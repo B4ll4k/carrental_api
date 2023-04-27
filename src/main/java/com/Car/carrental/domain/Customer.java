@@ -19,7 +19,7 @@ public class Customer {
     private String email;
 
     public Customer(){
-        
+
     }
 
     public Customer(String name, String email) {
@@ -33,5 +33,9 @@ public class Customer {
 
     public String getEmail() {
         return email;
+    }
+
+    public long getCustomerNumber() {
+        return customerNumber;
     }
 }

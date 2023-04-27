@@ -1,15 +1,23 @@
 package com.Car.carrental.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Cars {
-    private Collection<CarDTO> cars;
+    private Collection<Car> cars;
 
-    public Collection<CarDTO> getCars() {
+    public Collection<Car> getCars() {
         return cars;
     }
 
-    public Cars(Collection<CarDTO> cars) {
+    
+
+    public Cars() {
+        cars = new ArrayList<>();
+    }
+
+
+    public void setCars(Collection<Car> cars) {
         this.cars = cars;
     }
 

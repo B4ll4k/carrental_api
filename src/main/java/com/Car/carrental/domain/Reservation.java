@@ -1,7 +1,5 @@
 package com.Car.carrental.domain;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -14,8 +12,8 @@ public class Reservation {
 
     private long customerNumber;
     private String licensePlate;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
     
     public long getCustomerNumber() {
         return customerNumber;
@@ -23,17 +21,17 @@ public class Reservation {
     public String getLicensePlate() {
         return licensePlate;
     }
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
     
     public Reservation() {
     }
 
-    public Reservation(long customerNumber, String licensePlate, LocalDate startDate, LocalDate endDate) {
+    public Reservation(long customerNumber, String licensePlate, String startDate, String endDate) {
         this.customerNumber = customerNumber;
         this.licensePlate = licensePlate;
         this.startDate = startDate;

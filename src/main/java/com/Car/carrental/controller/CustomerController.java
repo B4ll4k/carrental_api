@@ -25,9 +25,9 @@ public class CustomerController {
     }
 
     @DeleteMapping("/customers/{email}")
-    ResponseEntity<?> removeCustomer(@PathVariable String email){
+    ResponseEntity<HttpStatus> removeCustomer(@PathVariable String email){
         customerService.removeCustomer(email);
-        return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/customers")

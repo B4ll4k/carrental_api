@@ -11,14 +11,14 @@ public class CustomerAdapter {
     }
     
     public static CustomerDTO getCustomerDTOFromCustomer(Customer customer){
-        return new CustomerDTO(customer.getName(), customer.getEmail());
+        return new CustomerDTO(customer.getCustomerNumber(), customer.getName(), customer.getEmail());
     }
 
     public static List<CustomerDTO> getCustomerDTOListFromCustomerList(List<Customer> customerList){
         List<CustomerDTO> customerDTOs = new ArrayList<>();
 
         for (Customer customer : customerList) {
-            customerDTOs.add(new CustomerDTO(customer.getName(), customer.getEmail()));
+            customerDTOs.add(new CustomerDTO(customer.getCustomerNumber(), customer.getName(), customer.getEmail()));
         }
 
         return customerDTOs;

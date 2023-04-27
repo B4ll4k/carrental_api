@@ -17,7 +17,8 @@ public class CustomerService {
     }
 
     public void removeCustomer(String email){
-        customerRepository.removeByEmail(email);
+
+        customerRepository.delete(customerRepository.findByEmail(email));
     }
 
     public List<CustomerDTO> getAllCustomers(){

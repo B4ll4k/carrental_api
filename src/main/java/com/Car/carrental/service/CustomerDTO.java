@@ -1,10 +1,12 @@
 package com.Car.carrental.service;
 
 public class CustomerDTO {
+    private long customerNumber;
     private String name;
     private String email;
 
-    public CustomerDTO(String name, String email) {
+    public CustomerDTO(long customerNumber, String name, String email) {
+        this.customerNumber = customerNumber;
         this.name = name;
         this.email = email;
     }
@@ -16,4 +18,9 @@ public class CustomerDTO {
     public String getEmail() {
         return email;
     }
+
+    public long getCustomerNumber() {
+        return customerNumber;
+    }
+    
 }

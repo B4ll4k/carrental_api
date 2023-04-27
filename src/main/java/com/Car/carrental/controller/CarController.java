@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Car.carrental.service.Car;
 import com.Car.carrental.service.CarService;
 import com.Car.carrental.service.Cars;
 
@@ -29,5 +30,10 @@ public class CarController {
     @GetMapping("/carsByPrice/{price}")
     public ResponseEntity<?> getCarByPrice(@PathVariable double price){
         return new ResponseEntity<Cars>(carService.searchCarByPrice(price), HttpStatus.OK);
+    }
+
+    @GetMapping("/carsByPlate/{licensePlate}")
+    public ResponseEntity<?> getCarByLicensePlate(@PathVariable String licensePlate){
+        return new ResponseEntity<Car>(carService.searchByLicense(licensePlate), HttpStatus.OK);
     }
 }

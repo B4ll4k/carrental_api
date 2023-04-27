@@ -24,4 +24,8 @@ public class CarService {
     public Cars searchCarByType(String type){
         return restTemplate.getForObject(carRentalProperties.getServerURL() + "/findByType/{type}", Cars.class, type);
     }
+
+    public Car searchByLicense(String licensePlate){
+        return restTemplate.getForObject(carRentalProperties.getServerURL() + "/{licensePlate}", Car.class, licensePlate);
+    }
 }

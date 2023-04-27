@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.Car.carrental.domain.RentalHistory;
 import com.Car.carrental.domain.Reservation;
+import com.Car.carrental.integration.PaymentGateway;
 import com.Car.carrental.repository.RentalHistoryRepository;
 import com.Car.carrental.repository.ReservationRepository;
 
@@ -23,15 +24,21 @@ public class ReservationService {
     RentalHistoryRepository rentalHistoryRepository;
     @Autowired
     JmsTemplate jmsTemplate;
+    @Autowired
+    CarService carService;
+    @Autowired
+    PaymentGateway paymentGateway;
 
     public void createUpdateReservation(Reservation reservation) {
         reservationRepository.save(reservation);
         jmsTemplate.convertAndSend("carfleet", reservation.getLicensePlate());
     }
     @Transactional
-    public RentalHistory returnCar(String licensePlate){
+    public RentalHistory payAndReturnCar(String licensePlate, String creditCardNo, String cvs, String expiryDate){
         Reservation r = reservationRepository.findByLicensePlate(licensePlate);
-        RentalHistory th = new RentalHistory(r.getCustomerNumber(), licensePlate, r.getStartDate(), r.getEndDate());
+        double paymentAmount = carService.searchByLicense(licensePlate).getprice() * 5;
+        paymentGateway.makePayment(creditCardNo, cvs, expiryDate, paymentAmount);
+        RentalHistory th = new RentalHistory(r.getCustomerNumber(), licensePlate, r.getStartDate(), r.getEndDate(), paymentAmount);
         rentalHistoryRepository.save(th);
         reservationRepository.delete(r);
         return th;

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Car.carrental.domain.RentalHistory;
@@ -48,8 +50,8 @@ public class ReservationController {
         return new ResponseEntity<RentalHistories>(rhs, HttpStatus.OK);
     }
 
-    @PostMapping("/returnCar/{licensePlate}")
-    public ResponseEntity<?> returnCar(@PathVariable String licensePlate){
-        return new ResponseEntity<RentalHistory>(reservationService.returnCar(licensePlate), HttpStatus.OK);
+    @PostMapping("/payAndReturnCar/{licensePlate}")
+    public ResponseEntity<?> payAndReturnCar(@PathVariable String licensePlate, @RequestParam String creditCardNo, @RequestParam String cvs, @RequestParam String expiryDate){
+        return new ResponseEntity<RentalHistory>(reservationService.payAndReturnCar(licensePlate, creditCardNo, cvs, expiryDate), HttpStatus.OK);
     }
 }

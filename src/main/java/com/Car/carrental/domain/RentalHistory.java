@@ -14,6 +14,7 @@ public class RentalHistory {
     private String licensePlate;
     private String startDate;
     private String endDate;
+    private double payment;
     
     public long getCustomerNumber() {
         return customerNumber;
@@ -27,14 +28,19 @@ public class RentalHistory {
     public String getEndDate() {
         return endDate;
     }
+
+    public double getPayment(){
+        return payment;
+    }
     
     public RentalHistory() {
     }
-    public RentalHistory(long customerNumber, String licensePlate, String startDate, String endDate) {
+    public RentalHistory(long customerNumber, String licensePlate, String startDate, String endDate, double payment) {
         this.customerNumber = customerNumber;
         this.licensePlate = licensePlate;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.payment = payment;
     }
 
     

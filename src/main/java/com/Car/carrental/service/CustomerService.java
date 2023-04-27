@@ -32,4 +32,5 @@ public class CustomerService {
     public List<CustomerDTO> getByName(String name){
         return CustomerAdapter.getCustomerDTOListFromCustomerList(customerRepository.findByName(name));
     }
+
 }

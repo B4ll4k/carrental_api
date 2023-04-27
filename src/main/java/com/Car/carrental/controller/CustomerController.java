@@ -40,7 +40,7 @@ public class CustomerController {
         return new ResponseEntity<CustomerDTO>(customerService.getByEmail(email), HttpStatus.OK);
     }
 
-    @GetMapping("/customers/getCustomerByName/{name}")
+    @GetMapping("/customers/getByName/{name}")
     ResponseEntity<?> getByName(@PathVariable String name){
         return new ResponseEntity<Customers>(new Customers(customerService.getByName(name)), HttpStatus.OK);
     }

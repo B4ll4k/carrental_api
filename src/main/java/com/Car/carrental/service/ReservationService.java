@@ -1,5 +1,7 @@
 package com.Car.carrental.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +44,11 @@ public class ReservationService {
         return r;
     }
 
+    public List<Reservation> getAllReservations(){
+        return reservationRepository.findAll();
+    }
+
+    public List<RentalHistory> getAllRentalHistories(){
+        return rentalHistoryRepository.findAll();
+    }
 }

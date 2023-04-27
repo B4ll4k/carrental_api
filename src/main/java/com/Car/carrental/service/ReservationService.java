@@ -58,4 +58,12 @@ public class ReservationService {
     public List<RentalHistory> getAllRentalHistories(){
         return rentalHistoryRepository.findAll();
     }
+
+    public List<RentalHistory> getRentalByCustomerNo(long customerNumber){
+        return rentalHistoryRepository.findByCustomerNumber(customerNumber);
+    }
+
+    public Reservation getReservationByCN(long customerNumber){
+        return reservationRepository.findByCustomerNumber(customerNumber);
+    }
 }

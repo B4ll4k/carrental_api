@@ -1,6 +1,5 @@
 package com.Car.carrental.controller;
 
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,12 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Car.carrental.domain.RentalHistory;
 import com.Car.carrental.domain.Reservation;
+import com.Car.carrental.service.CustomerDTO;
+import com.Car.carrental.service.CustomerService;
 import com.Car.carrental.service.RentalHistories;
 import com.Car.carrental.service.ReservationService;
 import com.Car.carrental.service.Reservations;
@@ -23,6 +23,8 @@ import com.Car.carrental.service.Reservations;
 public class ReservationController {
     @Autowired
     ReservationService reservationService;
+    @Autowired
+    CustomerService customerService;
 
     @PostMapping("/reservations")
     public ResponseEntity<?> createUpdateReservation(@RequestBody Reservation reservation){
@@ -53,5 +55,18 @@ public class ReservationController {
     @PostMapping("/payAndReturnCar/{licensePlate}")
     public ResponseEntity<?> payAndReturnCar(@PathVariable String licensePlate, @RequestParam String creditCardNo, @RequestParam String cvs, @RequestParam String expiryDate){
         return new ResponseEntity<RentalHistory>(reservationService.payAndReturnCar(licensePlate, creditCardNo, cvs, expiryDate), HttpStatus.OK);
+    }
+
+    @GetMapping("/customerWithData/{customerNumber}")
+    ResponseEntity<?> getCustomerWithData(@PathVariable long customerNumber){
+        CustomerWithAllData customerWithAllData = new CustomerWithAllData();
+        CustomerDTO cus = customerService.getByCUstomerNumber(customerNumber);
+        customerWithAllData.setCustomer(cus);
+        customerWithAllData.setReservation(reservationService.getReservationByCN(customerNumber));
+        RentalHistories rhs = new RentalHistories();
+        rhs.setRentalHistories(reservationService.getRentalByCustomerNo(customerNumber));
+        customerWithAllData.setRentalHistories(rhs);
+
+        return new ResponseEntity<CustomerWithAllData>(customerWithAllData, HttpStatus.OK);
     }
 }

@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Car.carrental.service.CustomerDTO;
 import com.Car.carrental.service.CustomerService;
+import com.Car.carrental.service.ReservationService;
 
 @RestController
 public class CustomerController {
     @Autowired
     CustomerService customerService;
+    @Autowired
+    ReservationService reservationService;
 
     @PostMapping("/customers")
     ResponseEntity<?> createUpdateCustomer(@RequestBody CustomerDTO customerDTO){
@@ -43,5 +46,10 @@ public class CustomerController {
     @GetMapping("/customers/getByName/{name}")
     ResponseEntity<?> getByName(@PathVariable String name){
         return new ResponseEntity<Customers>(new Customers(customerService.getByName(name)), HttpStatus.OK);
+    }
+
+    @GetMapping("/customerById/{customerNumber}")
+    ResponseEntity<?> getById(@PathVariable long customerNumber){
+        return new ResponseEntity<CustomerDTO>(customerService.getByCUstomerNumber(customerNumber), HttpStatus.OK);
     }
 }

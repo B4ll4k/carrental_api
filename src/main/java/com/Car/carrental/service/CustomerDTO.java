@@ -5,11 +5,18 @@ public class CustomerDTO {
     private String name;
     private String email;
 
-    public CustomerDTO(long customerNumber, String name, String email) {
-        this.customerNumber = customerNumber;
+    public CustomerDTO(String name, String email) {
         this.name = name;
         this.email = email;
     }
+
+    
+
+    public void setCustomerNumber(long customerNumber) {
+        this.customerNumber = customerNumber;
+    }
+
+
 
     public String getName() {
         return name;

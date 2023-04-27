@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Reservation {
+public class RentalHistory {
     @Id
     @GeneratedValue
     private long Id;
@@ -14,7 +14,6 @@ public class Reservation {
     private String licensePlate;
     private String startDate;
     private String endDate;
-    private boolean pickedUp;
     
     public long getCustomerNumber() {
         return customerNumber;
@@ -29,21 +28,14 @@ public class Reservation {
         return endDate;
     }
     
-    public boolean isPickedUp() {
-        return pickedUp;
+    public RentalHistory() {
     }
-
-    public void setPickedUp(boolean pickedUp) {
-        this.pickedUp = pickedUp;
-    }
-    public Reservation() {
-    }
-
-    public Reservation(long customerNumber, String licensePlate, String startDate, String endDate, boolean pickedUp) {
+    public RentalHistory(long customerNumber, String licensePlate, String startDate, String endDate) {
         this.customerNumber = customerNumber;
         this.licensePlate = licensePlate;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.pickedUp = pickedUp;
     }
+
+    
 }

@@ -1,23 +1,27 @@
 package com.Car.carrental.service;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.Car.carrental.CarRentalProperties;
+
 @Service
 public class CarService {
+    @Autowired
+    CarRentalProperties carRentalProperties;
     RestTemplate restTemplate = new RestTemplate();
-    private String serverURL = "http://localhost:8080/cars";
 
     public Cars searchCarByBrand(String brand){
-        return restTemplate.getForObject(serverURL + "/findByBrand/{brand}", Cars.class, brand);
+        return restTemplate.getForObject(carRentalProperties.getServerURL() + "/findByBrand/{brand}", Cars.class, brand);
     }
 
     public Cars searchCarByPrice(double price){
-        return restTemplate.getForObject(serverURL + "/findByPrice/{price}", Cars.class, price);
+        return restTemplate.getForObject(carRentalProperties.getServerURL() + "/findByPrice/{price}", Cars.class, price);
     }
 
     public Cars searchCarByType(String type){
-        return restTemplate.getForObject(serverURL + "/findByType/{type}", Cars.class, type);
+        return restTemplate.getForObject(carRentalProperties.getServerURL() + "/findByType/{type}", Cars.class, type);
     }
 }

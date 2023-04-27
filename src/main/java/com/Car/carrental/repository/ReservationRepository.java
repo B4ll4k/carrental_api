@@ -7,5 +7,5 @@ import com.Car.carrental.domain.Reservation;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long>{
-    
+    Reservation findByLicensePlate(String licensePlate);
 }

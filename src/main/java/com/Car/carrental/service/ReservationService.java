@@ -63,6 +63,10 @@ public class ReservationService {
         return rentalHistoryRepository.findByCustomerNumber(customerNumber);
     }
 
+    public List<RentalHistory> getRentalByLicense(String licensePlate){
+        return rentalHistoryRepository.findByLicensePlate(licensePlate);
+    }
+
     public Reservation getReservationByCN(long customerNumber){
         return reservationRepository.findByCustomerNumber(customerNumber);
     }

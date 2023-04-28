@@ -1,6 +1,10 @@
 package com.Car.carrental.service;
 
 
+import java.util.List;
+import java.util.stream.Collector;
+
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -26,6 +30,10 @@ public class CarService {
     }
 
     public Car searchByLicense(String licensePlate){
-        return restTemplate.getForObject(carRentalProperties.getServerURL() + "/{licensePlate}", Car.class, licensePlate);
+        return restTemplate.getForObject(carRentalProperties.getServerURL() + "/" + licensePlate, Car.class);
+    }
+
+    public java.util.Collection<Car> getAllCars(){
+        return restTemplate.getForObject(carRentalProperties.getServerURL(), Cars.class).getCars();
     }
 }

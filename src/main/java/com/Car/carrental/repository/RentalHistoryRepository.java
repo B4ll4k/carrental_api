@@ -10,4 +10,5 @@ import com.Car.carrental.domain.RentalHistory;
 @Repository
 public interface RentalHistoryRepository extends JpaRepository<RentalHistory, Long>{
     List<RentalHistory> findByCustomerNumber(long customerNumber);
+    List<RentalHistory> findByLicensePlate(String licensePlate);
 }

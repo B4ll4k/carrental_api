@@ -33,4 +33,8 @@ public class CustomerService {
         return CustomerAdapter.getCustomerDTOListFromCustomerList(customerRepository.findByName(name));
     }
 
+    public CustomerDTO getByCUstomerNumber(long customerNumber){
+        return CustomerAdapter.getCustomerDTOFromCustomer(customerRepository.findById(customerNumber).get());
+    }
+
 }

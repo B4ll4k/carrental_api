@@ -82,6 +82,14 @@ public class Car {
         this.price = price;
         this.available = available;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "Car [licensePlate=" + licensePlate + ", type=" + type + ", brand=" + brand + ", price=" + price
+                + ", available=" + available + "]";
+    }
     
 
 }
